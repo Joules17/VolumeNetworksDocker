@@ -1,7 +1,3 @@
-# VolumeNetworksDocker
-Desarrollo de la tarea de volumenes y redes en docker del curso de sistemas operativos grupo 80
-
-
 # SO-REDES Y VOLÚMENES EN DOCKER
 _Desarrollo de la tarea "Redes y volumenes en Docker" del curso de Sistemas Operativos_
 �
