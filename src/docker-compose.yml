@@ -1,22 +1,19 @@
 version: "3.1"
-
 services: 
   motorbd: 
     image: postgres
     restart: always
     ports: 
       - "5432:5432"
-    
     environment: 
       - DATABASE_HOST=127.0.0.1
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=123
       - POSTGRES_DB=root
+    
     volumes: 
       - "./sql:/docker-entrypoint-initdb.d"
       - "./database:/var/lib/postgresql/data"
-    
-    
 
   gestionbd: 
     image: dpage/pgadmin4
@@ -29,7 +26,14 @@ services:
       - motorbd
 
   shellbd: 
-    image: ubuntu:alpine
+    image: alpine:latest
+    entrypoint: /bin/sh
+    stdin_open: true
+    tty: true
+
+    ports: 
+      - "1500:80"
     
 
+    
 
