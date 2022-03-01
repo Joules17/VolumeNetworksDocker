@@ -14,6 +14,12 @@ services:
     volumes: 
       - "./sql:/docker-entrypoint-initdb.d"
       - "./database:/var/lib/postgresql/data"
+    networks:
+      network1: 
+        aliases: 
+          - network1_host
+
+
 
   gestionbd: 
     image: dpage/pgadmin4
@@ -24,6 +30,14 @@ services:
       - "80:80"
     depends_on:
       - motorbd
+    networks: 
+      network1: 
+        aliases: 
+          - network1_host
+      network2: 
+        aliases: 
+          - network2_host
+    
 
   shellbd: 
     image: alpine:latest
@@ -33,7 +47,20 @@ services:
 
     ports: 
       - "1500:80"
+    networks:
+      network2: 
+        aliases: 
+          - network2_host
+  
+networks: 
+  network1: 
+    driver: bridge 
+    ipam:
+      driver: default
+  network2: 
+    driver: bridge
+    ipam: 
+      driver: default
     
 
     
-
